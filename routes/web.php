@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use Database\Seeders\CategorySeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Category');
-});
+Route::get('/', [CategoryController::class, "GetAll"]);
+
+Route::post("/AddCategory", [CategoryController::class, "store"]);
+
+Route::get('/EditCategory/{id}', [CategoryController::class, "EditView"]);
+
+Route::put('/UpdateCategory/{id}', [CategoryController::class, "UpdateView"]);
+
+Route::delete('/DeleteCategory/{id}', [CategoryController::class, "Delete"]);
+
 Route::get('/produit', function () {
     return view('Produit');
 });

@@ -21,9 +21,10 @@
     @include("NavBar")
 
 
-    <form>
+    <form method="post" action="/AddCategory">
         <div>
-            <input type="search" name="InpCategory" id="InpCategory" class=" relative w-80 p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 fcus:ring-blue-500 focus:border-blue-500 my-6 mx-4" placeholder="Add Category" required>
+            @csrf
+            <input type="text" name="nom" id="nom" class=" relative w-80 p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 fcus:ring-blue-500 focus:border-blue-500 my-6 mx-4" placeholder="Add Category" required>
             <button type="submit" name="BtnCategory" class="text-white relative bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
         </div>
     </form>
@@ -35,16 +36,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Product name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Color
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Category
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
+                        Category name
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -52,24 +44,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</a>
+                @foreach($categories as $category)
+                <tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $category->nom }} </th>
+                    <td class="px-6 py-4 flex gap-5">
+                        <a href="/EditCategory/{{$category->id}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        |
+                        <form method="POST" action="/DeleteCategory/{{$category->id}}" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="font-medium text-blue-600 dark:text-blue-500 hover:underline border-none bg-transparent cursor-pointer">
+                        </form>
+
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

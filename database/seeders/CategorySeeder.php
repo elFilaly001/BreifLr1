@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('category')->insert([
+        DB::table('categories')->insert([
             ['nom' => 'Category 1'],
             ['nom' => 'Category 2'],
             ['nom' => 'Category 3'],
