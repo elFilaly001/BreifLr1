@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProduitController;
 use Database\Seeders\CategorySeeder;
 
 /*
@@ -25,6 +26,12 @@ Route::put('/UpdateCategory/{id}', [CategoryController::class, "UpdateView"]);
 
 Route::delete('/DeleteCategory/{id}', [CategoryController::class, "Delete"]);
 
-Route::get('/produit', function () {
-    return view('Produit');
-});
+Route::get('/produit', [ProduitController::class, "index"]);
+
+Route::post('/AddProduit', [ProduitController::class, "store"]);
+
+Route::get('/EditProduit/{id}', [ProduitController::class, "Edit"]);
+
+Route::put('/UpdateProduit/{id}', [ProduitController::class, "Update"]);
+
+Route::delete('/DeleteProduit/{id}', [ProduitController::class, "Delete"]);
