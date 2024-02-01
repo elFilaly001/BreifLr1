@@ -11,7 +11,7 @@ class produitController extends Controller
     public function index()
     {
         $cat = category::all();
-        $prds = produit::all();
+        $prds = produit::getjoin();
         return view("Produit", compact(["cat", "prds"]));
     }
 
@@ -22,6 +22,7 @@ class produitController extends Controller
             $file = $request->file('image');
             $extenstion = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extenstion;
+            dd($inp, $request);
             $file->move('uploads/Prd_images/', $filename);
             $inp["image"] = $filename;
             produit::create($inp);
@@ -52,7 +53,7 @@ class produitController extends Controller
             $prd->category_id = $request->category_id;
             $prd->update();
             $cat = category::all();
-            $prds = produit::all();
+            $prds = produit::getjoin();
             return view("Produit", compact(["cat", "prds"]));
         } else {
             $prd->nome = $request->nome;
@@ -62,7 +63,7 @@ class produitController extends Controller
             $prd->category_id = $request->category_id;
             $prd->update();
             $cat = category::all();
-            $prds = produit::all();
+            $prds = produit::getjoin();
             return view("Produit", compact(["cat", "prds"]));
         }
     }

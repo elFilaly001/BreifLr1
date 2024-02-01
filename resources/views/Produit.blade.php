@@ -1,3 +1,4 @@
+@dump($prds)
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +69,8 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->description }} </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->prix }} </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->tags }} </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->category_id }} </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->nom }} </th>
+                    @dump($prd->id);
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <a href="/EditProduit/{{$prd->id}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         |
