@@ -54,7 +54,7 @@ class produitController extends Controller
             $prd->update();
             $cat = category::all();
             $prds = produit::getjoin();
-            return view("Produit", compact(["cat", "prds"]));
+            return redirect("/produit");
         } else {
             $prd->nome = $request->nome;
             $prd->description = $request->description;
@@ -64,7 +64,7 @@ class produitController extends Controller
             $prd->update();
             $cat = category::all();
             $prds = produit::getjoin();
-            return view("Produit", compact(["cat", "prds"]));
+            return redirect("/produit");
         }
     }
 

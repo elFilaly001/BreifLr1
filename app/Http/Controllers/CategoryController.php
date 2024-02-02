@@ -34,7 +34,7 @@ class categoryController extends Controller
         $cats->nom = $request->input("nom");
         $cats->update();
         $categories = category::all();
-        return view('Category', compact("categories"));
+        return redirect("/");
     }
 
     public function Delete($id)
