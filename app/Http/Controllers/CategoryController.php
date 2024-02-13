@@ -18,7 +18,7 @@ class categoryController extends Controller
 
     public function GetAll()
     {
-        $categories = category::all();
+        $categories = category::paginate(10);
         return view('Category', compact("categories"));
     }
 

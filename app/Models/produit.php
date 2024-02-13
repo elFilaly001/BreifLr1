@@ -16,4 +16,9 @@ class produit extends Model
             ->select("produits.*", "categories.id as categories_id", "categories.nom")->get();
         return $prd;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(category::class);
+    }
 }

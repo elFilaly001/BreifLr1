@@ -61,6 +61,39 @@
                 @endforeach
             </tbody>
         </table>
+        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 mb-5 mx-4" aria-label="Table navigation">
+            <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
+                Showing <span class="font-semibold text-gray-900 dark:text-white">{{ $categories->firstItem() }}</span> to <span class="font-semibold text-gray-900 dark:text-white">{{ $categories->lastItem() }}</span> of <span class="font-semibold text-gray-900 dark:text-white">{{ $categories->total() }}</span> categories
+            </span>
+            <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                @if ($categories->onFirstPage())
+                <li class="disabled" aria-disabled="true">
+                    <span class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</span>
+                </li>
+                @else
+                <li>
+                    <a href="{{ $categories->previousPageUrl() }}" rel="prev" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                </li>
+                @endif
+
+                @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
+                <li>
+                    <a href="{{ $url }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $page }}</a>
+                </li>
+                @endforeach
+
+                @if ($categories->hasMorePages())
+                <li>
+                    <a href="{{ $categories->nextPageUrl() }}" rel="next" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                </li>
+                @else
+                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                    <span class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</span>
+                </li>
+                @endif
+            </ul>
+
+        </nav>
     </div>
 
 

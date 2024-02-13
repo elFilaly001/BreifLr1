@@ -1,4 +1,3 @@
-@dump($prds)
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +8,8 @@
 
     <!-- flowbite -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
+    @vite('resources/css/app.css')
 
 </head>
 
@@ -62,15 +63,14 @@
             <tbody>
                 @foreach($prds as $prd)
                 <tr>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-6 py-4 my_th">
                         <img src='{{asset("uploads/Prd_images/".$prd->image)}}' class="w-12 rounded-full" alt="Apple Watch">
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->nome }} </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->description }} </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->prix }} </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->tags }} </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $prd->nom }} </th>
-                    @dump($prd->id);
+                    <th scope="row" class="my_th">{{ $prd->nome }} </th>
+                    <th scope="row" class="my_th">{{ $prd->description }} </th>
+                    <th scope="row" class="my_th">{{ $prd->prix }} </th>
+                    <th scope="row" class="my_th">{{ $prd->tags }} </th>
+                    <th scope="row" class="my_th">{{ $prd->category->nom }} </th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <a href="/EditProduit/{{$prd->id}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         |
@@ -89,6 +89,8 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"></script>
 </body>
 
 </html>

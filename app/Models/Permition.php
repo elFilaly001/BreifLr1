@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class Permition extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["nom"];
-
-    public function produit()
+    public function route()
     {
-        return $this->hasMany(produit::class);
+        return $this->belongsTo(Route::class);
     }
 }

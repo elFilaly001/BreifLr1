@@ -11,7 +11,7 @@ class produitController extends Controller
     public function index()
     {
         $cat = category::all();
-        $prds = produit::getjoin();
+        $prds = produit::all();
         return view("Produit", compact(["cat", "prds"]));
     }
 
@@ -22,7 +22,6 @@ class produitController extends Controller
             $file = $request->file('image');
             $extenstion = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extenstion;
-            dd($inp, $request);
             $file->move('uploads/Prd_images/', $filename);
             $inp["image"] = $filename;
             produit::create($inp);
