@@ -57,6 +57,11 @@ Route::get("/register", [LoginController::class, "Register"]);
 Route::post("/register/post", [UserController::class, "Register"]);
 
 
+//ResetPassword
+
+Route::get("/resetPassword/{token}", [LoginController::class, "newPasswordPAge"]);
+Route::post("/sendEmail", [LoginController::class, "reset"]);
+
 //CRUD client
 
 Route::get("/Admin/Client", [UserController::class, "ClientIndex"]);
@@ -68,3 +73,9 @@ Route::get("/Admin/Client/Edit/{id}", [UserController::class, "Edit"]);
 Route::put("/Admin/Client/Update/{id}", [UserController::class, "Update"]);
 
 Route::delete("/Admin/Client/Delete/{id}", [UserController::class, "delete"]);
+
+
+//Products
+
+Route::get("/produitShow", [ProduitController::class, "ProductsIndex"]);
+Route::post("/produitShow", [ProduitController::class, "search"]);

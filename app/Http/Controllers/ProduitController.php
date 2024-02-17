@@ -14,6 +14,12 @@ class produitController extends Controller
         $prds = produit::all();
         return view("Produit", compact(["cat", "prds"]));
     }
+    public function ProductsIndex()
+    {
+        $cat = category::all();
+        $prds = produit::all();
+        return view("ProduitShow", compact(["cat", "prds"]));
+    }
 
     public function store(Request $request)
     {
@@ -73,5 +79,12 @@ class produitController extends Controller
         $prd = produit::find($id);
         $prd->delete();
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $prds = produit::where('nome', 'like', '%' . $query . '%')->get();
+        return view('ProduitShow', compact('prds', 'query'));
     }
 }

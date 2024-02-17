@@ -44,7 +44,6 @@ class UserController extends Controller
             if ($inp["password"] == $inp["Rpassword"]) {
                 $inp["first_name"] = $inp["first_name"] . " " . $inp["last_name"];
                 $inp["password"] = Hash::make($inp["password"]);
-                dd($request);
                 User::create([
                     "name" => $inp["first_name"],
                     "email" => $inp["email"],

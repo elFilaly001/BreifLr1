@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form class="max-w-sm mx-auto" action="/login/post" method="POST">
+    <form class="max-w-sm mx-auto" action="/sendEmail" method="POST">
         @csrf
         <div class="mb-5 mt-10">
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
